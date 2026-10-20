@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.todo.domain.model.Priority
 import com.app.todo.domain.model.Task
+import com.app.todo.presentation.common.PriorityBadge
 import com.app.todo.ui.theme.AppBackground
 import com.app.todo.ui.theme.CardBackground
 import com.app.todo.ui.theme.PrimaryBlue
@@ -279,19 +280,7 @@ fun TaskItemCard(
                         Text(text = dueText, fontSize = 12.sp, color = Color.Gray)
                     }
 
-                    // Priority Badge matching screenshot design
-                    val (priorityColor, priorityText) = when (task.priority) {
-                        Priority.HIGH -> PriorityHigh to "High"
-                        Priority.MEDIUM -> PriorityMedium to "Medium"
-                        Priority.LOW -> PriorityLow to "Low"
-                    }
-
-                    Text(
-                        text = priorityText,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = priorityColor
-                    )
+                    PriorityBadge(priority = task.priority)
                 }
             }
         }
