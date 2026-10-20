@@ -5,7 +5,6 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.app.todo.domain.model.Priority
-import com.app.todo.domain.model.Subtask
 import com.app.todo.domain.model.Task
 
 @Entity(
@@ -29,25 +28,4 @@ data class TaskEntity(
     val isDone: Boolean = false,
     val listId: Long? = null,
     val createdAt: Long = System.currentTimeMillis()
-)
-
-fun TaskEntity.toDomain(subtasks: List<Subtask> = emptyList()): Task = Task(
-    id = id,
-    title = title,
-    notes = notes,
-    dueAt = dueAt,
-    priority = Priority.valueOf(priority),
-    isDone = isDone,
-    listId = listId,
-    subtasks = subtasks
-)
-
-fun Task.toEntity(): TaskEntity = TaskEntity(
-    id = id,
-    title = title,
-    notes = notes,
-    dueAt = dueAt,
-    priority = priority.name,
-    isDone = isDone,
-    listId = listId
 )

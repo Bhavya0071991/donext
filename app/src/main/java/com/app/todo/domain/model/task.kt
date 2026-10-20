@@ -1,9 +1,5 @@
 package com.app.todo.domain.model
 
-import com.app.todo.domain.repository.TaskRepository
-import jakarta.inject.Inject
-import kotlinx.coroutines.flow.Flow
-
 enum class Priority { LOW, MEDIUM, HIGH }
 
 data class Task(
@@ -29,9 +25,3 @@ data class TaskList(
     val name: String,
     val colorHex: String
 )
-
-
-
-class GetTasksUseCase @Inject constructor(private val repo: TaskRepository) {
-    operator fun invoke(): Flow<List<Task>> = repo.observeTasks()
-}
