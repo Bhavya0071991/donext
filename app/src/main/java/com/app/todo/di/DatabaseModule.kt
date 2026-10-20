@@ -4,9 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.app.todo.data.local.TaskDatabase
 import com.app.todo.data.local.dao.TaskDao
-import com.app.todo.data.repositoryimpl.TaskRepositoryImpl
-import com.app.todo.domain.repository.TaskRepository
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,17 +29,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideTaskDao(db: TaskDatabase): TaskDao{
+    fun provideTaskDao(db: TaskDatabase): TaskDao {
         return db.taskDao()
     }
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
-
-    @Binds
-    @Singleton
-    abstract fun bindTaskRepository(impl: TaskRepositoryImpl)
-    : TaskRepository
 }
